@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 
 import { Form, FormTitle, Button, Input } from './ContactForm.styled';
 import { useSelector, useDispatch } from "react-redux";
-import { nanoid } from 'nanoid';
-import { addContact } from 'components/redux/contactSlice';
+import { addContact } from 'components/redux/contacts.thunk';
 
 
 export function ContactForm() {
@@ -27,16 +26,17 @@ export function ContactForm() {
   
   const handleSubmit = e => {
     e.preventDefault();
+  
     if (contacts.find(contact => contact.name === name)) {
       return alert(`${name} is is already in contacts.`);
     } else {
     dispatch(
         addContact({
-          id: nanoid(),
-          name: name,
-          number: number,
+          name,
+          phone: number,
         })
       );
+    
       reset();
     }
   };

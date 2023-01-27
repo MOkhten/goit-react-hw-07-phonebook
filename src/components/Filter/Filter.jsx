@@ -6,12 +6,12 @@ export const Filter = () => {
     const dispatch = useDispatch();
     const filter = useSelector((state) => state.contacts.filter);
 
-  const onFilterChange = (filter) => {
-    dispatch(setFilter(filter));
+  const onFilterChange = (e) => {
+    dispatch(setFilter(e.target.value));
   };
     return (
         <Label > Find contacts by name
-            <Input type="text" value={filter} onChange={(e) => onFilterChange(e.target.value)} />
+            <Input type="text" value={filter} onChange={onFilterChange} />
             </Label>
     )
 }
